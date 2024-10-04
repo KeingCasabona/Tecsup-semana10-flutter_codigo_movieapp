@@ -1,182 +1,89 @@
+import 'dart:convert';
 import 'package:flutter/material.dart';
+import 'package:flutter_codigo_movieapp/ui/widget/item_movie_widget.dart';
+import 'package:http/http.dart' as http;
 
-class HomePage extends StatelessWidget {
-  const HomePage({super.key});
+class HomePage extends StatefulWidget {
+  HomePage({super.key});
+
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  List movies = [];
+
+  getMovies() async {
+    String _url =
+        'https://api.themoviedb.org/3/movie/popular?api_key=b75b5deb55a09c7f29e699ae08cd4be5&language=en-US&page=1';
+    Uri _uri = Uri.parse(_url);
+    http.Response _response = await http.get(_uri);
+    if (_response.statusCode == 200) {
+      Map<String, dynamic> moviesMap = json.decode(_response.body);
+      movies = moviesMap['results'];
+      setState(() {});
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
-    double height = MediaQuery.of(context).size.height;
+    getMovies();
     return Scaffold(
       backgroundColor: Color(0xff23232d),
       body: SafeArea(
-        child: Column(
-          children: [
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        'Welcome, Keing L.',
-                        style: TextStyle(
-                          color: Colors.white,
-                        ),
-                      ),
-                      Text(
-                        'Discover',
-                        style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 34,
-                            fontWeight: FontWeight.w600),
-                      ),
-                    ],
-                  ),
-                  CircleAvatar(
-                    radius: 26,
-                    backgroundColor: Colors.red,
-                    backgroundImage: NetworkImage(
-                        'https://images.pexels.com/photos/2379005/pexels-photo-2379005.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'),
-                  )
-                ],
-              ),
-            ),
-
-            //seccion de categorias
-            SizedBox(height: 20),
-
-            //seccion de listado de peliculas
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20.0),
-              child: Container(
-                height: height * 0.48,
-                width: double.infinity,
-                decoration: BoxDecoration(
-                  //color: Colors.red,
-                  borderRadius: BorderRadius.circular(20),
-                  image: DecorationImage(
-                    fit: BoxFit.cover,
-                    image: NetworkImage(
-                        'https://images.pexels.com/photos/307847/pexels-photo-307847.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'),
-                  ),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.black.withOpacity(0.5),
-                      blurRadius: 12,
-                      offset: Offset(4, 4),
-                    ),
-                  ],
-                ),
-                child: Stack(
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Align(
-                      alignment: Alignment.topRight,
-                      child: Container(
-                        margin: EdgeInsets.all(14),
-                        height: 60,
-                        width: 60,
-                        decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          color: Color(0xff23232d).withOpacity(0.9),
-                        ),
-                        child: Center(
-                          child: Text(
-                            '4.2',
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 20,
-                              fontWeight: FontWeight.bold,
-                            ),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          'Welcome, Keing L.',
+                          style: TextStyle(
+                            color: Colors.white,
                           ),
                         ),
-                      ),
-                    ),
-                    Align(
-                      alignment: Alignment.bottomCenter,
-                      child: Container(
-                        padding:
-                            EdgeInsets.symmetric(horizontal: 12, vertical: 16),
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(16),
-                          color: Color(0xff23232d).withOpacity(0.9),
+                        Text(
+                          'Discover',
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 34,
+                              fontWeight: FontWeight.w600),
                         ),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            Text(
-                              'Lorem ipsu hjhj jfsdfsd fsdfsj fsdfdsj. ',
-                              overflow: TextOverflow.ellipsis,
-                              maxLines: 1,
-                              style: TextStyle(
-                                  fontSize: 22,
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.w600),
-                            ),
-                            Container(
-                              margin: EdgeInsets.symmetric(vertical: 6),
-                              width: 100,
-                              height: 3,
-                              decoration: BoxDecoration(
-                                color: Colors.greenAccent,
-                              ),
-                            ),
-                            Text(
-                              overflow: TextOverflow.ellipsis,
-                              maxLines: 3,
-                              'fdsfdsf. fdsfsfsf fdsfsd fds fsdfds fdsfds d f  j lkjk. ljk jlkjl kjlk lk jlj lj llkfdsfdsf. fdsfsfsf fdsfsd fds fsdfds fdsfds d f  j lkjk. ljk jlkjl kjlk lk jlj lj llkfdsfdsf. fdsfsfsf fdsfsd fds fsdfds fdsfds d f  j lkjk. ljk jlkjl kjlk lk jlj lj llkfdsfdsf. fdsfsfsf fdsfsd fds fsdfds fdsfds d f  j lkjk. ljk jlkjl kjlk lk jlj lj llk',
-                              style: TextStyle(
-                                fontSize: 14,
-                                color: Colors.white70,
-                              ),
-                            ),
-                            SizedBox(height: 4),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Row(
-                                  children: [
-                                    Icon(
-                                      Icons.date_range,
-                                      color: Colors.white,
-                                    ),
-                                    SizedBox(width: 6),
-                                    Text(
-                                      '2022-02-12',
-                                      style: TextStyle(
-                                        color: Colors.white,
-                                      ),
-                                    )
-                                  ],
-                                ),
-                                Row(
-                                  children: [
-                                    Icon(
-                                      Icons.thumb_up,
-                                      color: Colors.white,
-                                    ),
-                                    SizedBox(width: 6),
-                                    Text(
-                                      '433',
-                                      style: TextStyle(
-                                        color: Colors.white,
-                                      ),
-                                    )
-                                  ],
-                                ),
-                              ],
-                            ),
-                          ],
-                        ),
-                      ),
+                      ],
                     ),
+                    CircleAvatar(
+                      radius: 26,
+                      backgroundColor: Colors.red,
+                      backgroundImage: NetworkImage(
+                          'https://images.pexels.com/photos/2379005/pexels-photo-2379005.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'),
+                    )
                   ],
                 ),
               ),
-            ),
-          ],
+
+              //seccion de categorias
+              SizedBox(height: 20),
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: 20),
+                child: ListView.builder(
+                  shrinkWrap: true,
+                  physics: ScrollPhysics(),
+                  itemCount: 2,
+                  itemBuilder: (BuildContext context, int index) {
+                    return ItemMovieWidget();
+                  },
+                ),
+              ),
+
+              //seccion de listado de peliculas
+            ],
+          ),
         ),
       ),
     );
