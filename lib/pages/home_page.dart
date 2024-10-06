@@ -1,6 +1,6 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
-import 'package:flutter_codigo_movieapp/ui/widget/item_movie_widget.dart';
+import 'package:flutter_codigo_movieapp/ui/widgets/item_movie_widget.dart';
 import 'package:http/http.dart' as http;
 
 class HomePage extends StatefulWidget {
