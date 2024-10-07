@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_codigo_movieapp/pages/detail_page.dart';
 import 'package:flutter_codigo_movieapp/ui/general/colors.dart';
+import 'package:flutter_codigo_movieapp/ui/widgets/line_widget.dart';
 
 class ItemMovieWidget extends StatelessWidget {
   const ItemMovieWidget({super.key});
@@ -78,13 +79,8 @@ class ItemMovieWidget extends StatelessWidget {
                           color: Colors.white,
                           fontWeight: FontWeight.w600),
                     ),
-                    Container(
-                      margin: EdgeInsets.symmetric(vertical: 6),
+                    LineWidget(
                       width: 100,
-                      height: 3,
-                      decoration: BoxDecoration(
-                        color: kBrandSecondaryColor,
-                      ),
                     ),
                     Text(
                       overflow: TextOverflow.ellipsis,
