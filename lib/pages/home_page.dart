@@ -1,7 +1,8 @@
-import 'dart:convert';
 import 'package:flutter/material.dart';
+import 'package:flutter_codigo_movieapp/models/movile.model.dart';
+import 'package:flutter_codigo_movieapp/services/api_service.dart';
+import 'package:flutter_codigo_movieapp/ui/general/colors.dart';
 import 'package:flutter_codigo_movieapp/ui/widgets/item_movie_widget.dart';
-import 'package:http/http.dart' as http;
 
 class HomePage extends StatefulWidget {
   HomePage({super.key});
@@ -11,25 +12,39 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  List movies = [];
-
-  getMovies() async {
-    String _url =
-        'https://api.themoviedb.org/3/movie/popular?api_key=b75b5deb55a09c7f29e699ae08cd4be5&language=en-US&page=1';
-    Uri _uri = Uri.parse(_url);
-    http.Response _response = await http.get(_uri);
-    if (_response.statusCode == 200) {
-      Map<String, dynamic> moviesMap = json.decode(_response.body);
-      movies = moviesMap['results'];
-      setState(() {});
-    }
+  List<MovieModel> movies = [];
+  @override
+  initState() {
+    super.initState();
+    getData();
   }
+
+  getData() {
+    ApiService _apiService = ApiService();
+    _apiService.getMovies().then((value) {
+      movies = value;
+      setState(() {});
+    });
+  }
+
+  // getMovies() async {
+  //   String _url =
+  //       '$pathProduction/movie/popular?api_key=$apiKey&language=en-US&page=1';
+  //   Uri _uri = Uri.parse(_url);
+  //   http.Response _response = await http.get(_uri);
+  //   if (_response.statusCode == 200) {
+  //     Map<String, dynamic> moviesMap = json.decode(_response.body);
+  //     movies = moviesMap['results']
+  //         .map<MovieModel>((e) => MovieModel.fromJson(e))
+  //         .toList();
+  //     setState(() {});
+  //   }
+  // }
 
   @override
   Widget build(BuildContext context) {
-    getMovies();
     return Scaffold(
-      backgroundColor: Color(0xff23232d),
+      backgroundColor: kBrandPrimaryColor,
       body: SafeArea(
         child: SingleChildScrollView(
           child: Column(

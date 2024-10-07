@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_codigo_movieapp/ui/general/colors.dart';
 
 class ItemMovieWidget extends StatelessWidget {
   const ItemMovieWidget({super.key});
@@ -56,7 +57,7 @@ class ItemMovieWidget extends StatelessWidget {
               padding: EdgeInsets.symmetric(horizontal: 12, vertical: 16),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(16),
-                color: Color(0xff23232d).withOpacity(0.9),
+                color: kBrandPrimaryColor.withOpacity(0.9),
               ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -76,7 +77,7 @@ class ItemMovieWidget extends StatelessWidget {
                     width: 100,
                     height: 3,
                     decoration: BoxDecoration(
-                      color: Colors.greenAccent,
+                      color: kBrandSecondaryColor,
                     ),
                   ),
                   Text(
