@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_codigo_movieapp/ui/general/colors.dart';
 
 class LineWidget extends StatelessWidget {
-  double width;
+  final double width;
   LineWidget({required this.width});
 
   @override

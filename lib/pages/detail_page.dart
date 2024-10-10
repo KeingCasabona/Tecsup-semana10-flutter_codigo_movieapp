@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_codigo_movieapp/ui/general/colors.dart';
+import 'package:flutter_codigo_movieapp/ui/widgets/item_cast_widget.dart';
 import 'package:flutter_codigo_movieapp/ui/widgets/line_widget.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -219,7 +220,30 @@ class DetailPage extends StatelessWidget {
                             label: Text('crime'),
                           ),
                         ],
-                      )
+                      ),
+                      SizedBox(height: 20),
+                      Text(
+                        'Cast',
+                        style: TextStyle(
+                          color: Colors.white,
+                        ),
+                      ),
+                      LineWidget(width: 50),
+                      SingleChildScrollView(
+                        scrollDirection: Axis.horizontal,
+                        child: Row(
+                          children: [
+                            ItemCastWidget(),
+                            ItemCastWidget(),
+                            ItemCastWidget(),
+                            ItemCastWidget(),
+                            ItemCastWidget(),
+                            ItemCastWidget(),
+                            ItemCastWidget(),
+                          ],
+                        ),
+                      ),
+                      SizedBox(height: 140),
                     ],
                   ),
                 ),
