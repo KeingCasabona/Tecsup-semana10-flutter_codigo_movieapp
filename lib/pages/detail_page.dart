@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_codigo_movieapp/ui/general/colors.dart';
 import 'package:flutter_codigo_movieapp/ui/widgets/line_widget.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class DetailPage extends StatelessWidget {
   const DetailPage({super.key});
@@ -141,13 +142,84 @@ class DetailPage extends StatelessWidget {
                       LineWidget(
                         width: 50,
                       ),
+                      SizedBox(height: 4),
                       Text(
                         'PFDSFSDEFSDFDS FDSFDS FDS FDSF',
                         style: TextStyle(
                           color: Colors.white,
-                          fontWeight: FontWeight.w600,
+                          fontWeight: FontWeight.normal,
                         ),
                       ),
+                      SizedBox(height: 20),
+                      SizedBox(
+                        width: double.infinity,
+                        height: 54,
+                        child: ElevatedButton.icon(
+                          onPressed: () async {
+                            Uri _uri = Uri.parse(
+                                'https://www.marvel.com/movies/thor-love-and-thunder');
+                            await launchUrl(_uri);
+                          },
+                          icon: Icon(
+                            Icons.link,
+                            color: Colors.white,
+                          ),
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: kBrandSecondaryColor,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(20),
+                            ),
+                          ),
+                          label: Text(
+                            'Home page',
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 15,
+                              fontWeight: FontWeight.w600,
+                            ),
+                          ),
+                        ),
+                      ),
+                      SizedBox(height: 20),
+                      Text(
+                        'Genders',
+                        style: TextStyle(
+                          color: Colors.white,
+                        ),
+                      ),
+                      LineWidget(width: 50),
+                      Wrap(
+                        //crossAxisAlignment: WrapCrossAlignment.center,
+                        alignment: WrapAlignment.center,
+                        spacing: 8,
+                        runSpacing: 2,
+                        children: [
+                          Chip(
+                            label: Text('Crime fdsfdsf'),
+                          ),
+                          Chip(
+                            label: Text('drama'),
+                          ),
+                          Chip(
+                            label: Text('Terror fdsfdsf'),
+                          ),
+                          Chip(
+                            label: Text('crime'),
+                          ),
+                          Chip(
+                            label: Text('Crime fdsfdsf'),
+                          ),
+                          Chip(
+                            label: Text('crime'),
+                          ),
+                          Chip(
+                            label: Text('Crime fdsfdsf'),
+                          ),
+                          Chip(
+                            label: Text('crime'),
+                          ),
+                        ],
+                      )
                     ],
                   ),
                 ),
