@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_codigo_movieapp/services/api_service.dart';
 import 'package:flutter_codigo_movieapp/ui/general/colors.dart';
 import 'package:flutter_codigo_movieapp/ui/widgets/item_cast_widget.dart';
 import 'package:flutter_codigo_movieapp/ui/widgets/line_widget.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class DetailPage extends StatelessWidget {
-  const DetailPage({super.key});
+  final ApiService _apiService = ApiService();
 
   @override
   Widget build(BuildContext context) {
+    _apiService.getMovie(616037);
     return Scaffold(
       backgroundColor: kBrandPrimaryColor,
       body: CustomScrollView(

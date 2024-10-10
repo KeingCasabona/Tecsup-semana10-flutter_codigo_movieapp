@@ -20,4 +20,16 @@ class ApiService {
     }
     return movies;
   }
+
+  getMovie(int movieId) async {
+    String _url =
+        '$pathProduction/movie/$movieId?api_key=$apiKey&language=en-US';
+    Uri _uri = Uri.parse(_url);
+    http.Response response = await http.get(_uri);
+    if (response.statusCode == 200) {
+      Map<String, dynamic> movieMap = json.decode(response.body);
+    }
+    print(response.statusCode);
+    print(response.body);
+  }
 }
