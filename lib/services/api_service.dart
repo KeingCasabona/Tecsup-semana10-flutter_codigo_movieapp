@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:flutter_codigo_movieapp/models/movie_detail_model.dart';
 import 'package:flutter_codigo_movieapp/models/movile.model.dart';
 import 'package:flutter_codigo_movieapp/utils/constants.dart';
 import 'package:http/http.dart' as http;
@@ -28,8 +29,9 @@ class ApiService {
     http.Response response = await http.get(_uri);
     if (response.statusCode == 200) {
       Map<String, dynamic> movieMap = json.decode(response.body);
+      MovieDetailModel movieDetailModel = MovieDetailModel.fromJson(movieMap);
+      return movieDetailModel;
     }
-    print(response.statusCode);
-    print(response.body);
+    return null;
   }
 }

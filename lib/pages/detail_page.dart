@@ -10,7 +10,7 @@ class DetailPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    _apiService.getMovie(616037);
+    _apiService.getMovie(507086);
     return Scaffold(
       backgroundColor: kBrandPrimaryColor,
       body: CustomScrollView(
