@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter_codigo_movieapp/models/movie_detail_model.dart';
-import 'package:flutter_codigo_movieapp/models/movile.model.dart';
+import 'package:flutter_codigo_movieapp/models/movie_model.dart';
 import 'package:flutter_codigo_movieapp/utils/constants.dart';
 import 'package:http/http.dart' as http;
 
@@ -22,7 +22,7 @@ class ApiService {
     return movies;
   }
 
-  getMovie(int movieId) async {
+  Future<MovieDetailModel?> getMovie(int movieId) async {
     String _url =
         '$pathProduction/movie/$movieId?api_key=$apiKey&language=en-US';
     Uri _uri = Uri.parse(_url);

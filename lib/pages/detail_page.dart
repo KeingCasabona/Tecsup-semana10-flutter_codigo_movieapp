@@ -1,16 +1,40 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_codigo_movieapp/models/movie_detail_model.dart';
 import 'package:flutter_codigo_movieapp/services/api_service.dart';
 import 'package:flutter_codigo_movieapp/ui/general/colors.dart';
 import 'package:flutter_codigo_movieapp/ui/widgets/item_cast_widget.dart';
 import 'package:flutter_codigo_movieapp/ui/widgets/line_widget.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-class DetailPage extends StatelessWidget {
+class DetailPage extends StatefulWidget {
+  int movieId;
+  DetailPage({super.key, required this.movieId});
+
+  @override
+  State<DetailPage> createState() => _DetailPageState();
+}
+
+class _DetailPageState extends State<DetailPage> {
   final ApiService _apiService = ApiService();
+  MovieDetailModel? movieDetailMovie;
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+  }
+
+  getData() {
+    _apiService.getMovie(widget.movieId).then((value) {
+      if (value != null) {
+        movieDetailMovie = value;
+        setState(() {});
+      }
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
-    _apiService.getMovie(507086);
+    print(widget.movieId);
     return Scaffold(
       backgroundColor: kBrandPrimaryColor,
       body: CustomScrollView(

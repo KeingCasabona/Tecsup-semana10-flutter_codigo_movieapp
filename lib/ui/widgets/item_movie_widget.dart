@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_codigo_movieapp/models/movie_model.dart';
 import 'package:flutter_codigo_movieapp/pages/detail_page.dart';
 import 'package:flutter_codigo_movieapp/ui/general/colors.dart';
 import 'package:flutter_codigo_movieapp/ui/widgets/line_widget.dart';
 
 class ItemMovieWidget extends StatelessWidget {
-  const ItemMovieWidget({super.key});
+  final MovieModel movieModel;
+  ItemMovieWidget({required this.movieModel});
 
   @override
   Widget build(BuildContext context) {
@@ -12,7 +14,13 @@ class ItemMovieWidget extends StatelessWidget {
     return GestureDetector(
       onTap: () {
         Navigator.push(
-            context, MaterialPageRoute(builder: (context) => DetailPage()));
+          context,
+          MaterialPageRoute(
+            builder: (context) => DetailPage(
+              movieId: movieModel.id,
+            ),
+          ),
+        );
       },
       child: Container(
         height: height * 0.48,

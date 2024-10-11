@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_codigo_movieapp/models/movile.model.dart';
+import 'package:flutter_codigo_movieapp/models/movie_model.dart';
 import 'package:flutter_codigo_movieapp/services/api_service.dart';
 import 'package:flutter_codigo_movieapp/ui/general/colors.dart';
 import 'package:flutter_codigo_movieapp/ui/widgets/item_movie_widget.dart';
@@ -89,9 +89,9 @@ class _HomePageState extends State<HomePage> {
                 child: ListView.builder(
                   shrinkWrap: true,
                   physics: ScrollPhysics(),
-                  itemCount: 2,
+                  itemCount: movies.length,
                   itemBuilder: (BuildContext context, int index) {
-                    return ItemMovieWidget();
+                    return ItemMovieWidget(movieModel: movies[index]);
                   },
                 ),
               ),
