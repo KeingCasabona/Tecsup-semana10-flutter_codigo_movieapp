@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:flutter_codigo_movieapp/models/movie_detail_cast.dart';
 import 'package:flutter_codigo_movieapp/models/movie_detail_model.dart';
 import 'package:flutter_codigo_movieapp/models/movie_model.dart';
 import 'package:flutter_codigo_movieapp/utils/constants.dart';
@@ -31,6 +32,19 @@ class ApiService {
       Map<String, dynamic> movieMap = json.decode(response.body);
       MovieDetailModel movieDetailModel = MovieDetailModel.fromJson(movieMap);
       return movieDetailModel;
+    }
+    return null;
+  }
+
+  Future<MovieDetailCast?> getMovieCast(int movieId) async {
+    String _url =
+        '$pathProduction/movie/$movieId/credits?api_key=$apiKey&language=en-US';
+    Uri _uri = Uri.parse(_url);
+    http.Response response = await http.get(_uri);
+    if (response.statusCode == 200) {
+      Map<String, dynamic> movieCastMap = json.decode(response.body);
+      MovieDetailCast movieDetailCast = MovieDetailCast.fromJson(movieCastMap);
+      return movieDetailCast;
     }
     return null;
   }

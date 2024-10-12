@@ -27,12 +27,12 @@ class ItemMovieWidget extends StatelessWidget {
         width: double.infinity,
         margin: EdgeInsets.symmetric(vertical: 12),
         decoration: BoxDecoration(
-          //color: Colors.red,
+          color: Colors.white12,
           borderRadius: BorderRadius.circular(20),
           image: DecorationImage(
             fit: BoxFit.cover,
             image: NetworkImage(
-                'https://images.pexels.com/photos/307847/pexels-photo-307847.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'),
+                'https://image.tmdb.org/t/p/w500${movieModel.posterPath}'),
           ),
           boxShadow: [
             BoxShadow(
@@ -56,7 +56,7 @@ class ItemMovieWidget extends StatelessWidget {
                 ),
                 child: Center(
                   child: Text(
-                    '4.2',
+                    movieModel.voteAverage.toString(),
                     style: TextStyle(
                       color: Colors.white,
                       fontSize: 20,
@@ -79,7 +79,7 @@ class ItemMovieWidget extends StatelessWidget {
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     Text(
-                      'Lorem ipsu hjhj jfsdfsd fsdfsj fsdfdsj. ',
+                      movieModel.title,
                       overflow: TextOverflow.ellipsis,
                       maxLines: 1,
                       style: TextStyle(
@@ -93,7 +93,7 @@ class ItemMovieWidget extends StatelessWidget {
                     Text(
                       overflow: TextOverflow.ellipsis,
                       maxLines: 3,
-                      'fdsfdsf. fdsfsfsf fdsfsd fds fsdfds fdsfds d f  j lkjk. ljk jlkjl kjlk lk jlj lj llkfdsfdsf. fdsfsfsf fdsfsd fds fsdfds fdsfds d f  j lkjk. ljk jlkjl kjlk lk jlj lj llkfdsfdsf. fdsfsfsf fdsfsd fds fsdfds fdsfds d f  j lkjk. ljk jlkjl kjlk lk jlj lj llkfdsfdsf. fdsfsfsf fdsfsd fds fsdfds fdsfds d f  j lkjk. ljk jlkjl kjlk lk jlj lj llk',
+                      movieModel.overview,
                       style: TextStyle(
                         fontSize: 14,
                         color: Colors.white70,
@@ -111,7 +111,9 @@ class ItemMovieWidget extends StatelessWidget {
                             ),
                             SizedBox(width: 6),
                             Text(
-                              '2022-02-12',
+                              movieModel.releaseDate
+                                  .toString()
+                                  .substring(0, 10),
                               style: TextStyle(
                                 color: Colors.white,
                               ),
@@ -126,7 +128,7 @@ class ItemMovieWidget extends StatelessWidget {
                             ),
                             SizedBox(width: 6),
                             Text(
-                              '433',
+                              movieModel.voteCount.toString(),
                               style: TextStyle(
                                 color: Colors.white,
                               ),
